@@ -9,12 +9,20 @@
     
     <ul>
       {% for customer in customer_list %}
-      <li><div>{{customer.name}}</div></li>
+      <li><div>{{customer.name}}</div><div>
+        <button type="button" >
+          <a href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
+        </button>
+      </div></li>
     </ul>
       {%endfor%}
     <ul>
       {% for customer in one_time_pickup_customers%}
-      <li><div>{{customer.name}}</div></li>
+      <li><div>{{customer.name}}</div><div>
+        <button type="button" >
+          <a href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
+        </button>
+      </div></li>
     </ul> 
       {%endfor%} 
   {% else %}

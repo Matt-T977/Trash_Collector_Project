@@ -25,8 +25,14 @@ def index(request):
         today = date.today()
         day_of_the_week = datetime.weekday(today)
         day_of_the_week_string = day_of_the_week_to_string(day_of_the_week)
-        customer_list = Customer.objects.all().filter(zip_code=logged_in_employee.zip_code).filter(weekly_pickup=day_of_the_week_string).exclude(suspend_end__gt=today , suspend_start__lt=today)
-        one_time_pickup_customers = Customer.objects.all().filter(one_time_pickup=today)
+        customer_list = Customer.objects.all().filter(
+            zip_code=logged_in_employee.zip_code).filter(
+                weekly_pickup=day_of_the_week_string).exclude(
+                    suspend_end__gt=today , suspend_start__lt=today).exclude(
+                        date_of_last_pickup=today)
+        one_time_pickup_customers = Customer.objects.all().filter(
+            one_time_pickup=today).exclude(
+                date_of_last_pickup=today)
         # customer_list = customer.objects.exclude()
 
         context = {
@@ -39,6 +45,19 @@ def index(request):
 
     except ObjectDoesNotExist:
         return HttpResponseRedirect(reverse('employees:create'))
+
+@login_required
+def confirm_pickup(request, customer_id):
+    logged_in_user = request.user
+    Customer = apps.get_model('customers.Customer')
+    current_customer = Customer.objects.get(pk=customer_id)
+    today = date.today()
+    current_customer.date_of_last_pickup = today
+    current_customer.balance += 20
+    current_customer.save()
+    return HttpResponseRedirect(reverse('employees:index'))
+
+
 
 @login_required   
 def create(request):
