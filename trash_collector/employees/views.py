@@ -47,9 +47,39 @@ def index(request):
         return HttpResponseRedirect(reverse('employees:create'))
 
 @login_required
+def display_specified_day(request, current_day_display):
+    # This line will get the Customer model from the other app, it can now be used to query the db for Customers
+    Customer = apps.get_model('customers.Customer')
+
+    logged_in_user = request.user
+
+    try:
+        logged_in_employee = Employee.objects.get(user=logged_in_user)
+        today = date.today()
+        customer_list = Customer.objects.all().filter(
+            zip_code=logged_in_employee.zip_code).filter(
+                weekly_pickup=current_day_display).exclude(
+                    suspend_end__gt=today , suspend_start__lt=today).exclude(
+                        date_of_last_pickup=today)
+        # customer_list = customer.objects.exclude()
+
+        context = {
+            'current_day_display' : current_day_display,
+            'customer_list' : customer_list,
+            'logged_in_employee' : logged_in_employee,
+            'today' : today
+        }
+        return render(request, 'employees/index.html', context)
+
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect(reverse('employees:create'))
+
+@login_required
 def confirm_pickup(request, customer_id):
     logged_in_user = request.user
+
     Customer = apps.get_model('customers.Customer')
+
     current_customer = Customer.objects.get(pk=customer_id)
     today = date.today()
     current_customer.date_of_last_pickup = today

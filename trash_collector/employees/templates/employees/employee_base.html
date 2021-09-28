@@ -5,4 +5,31 @@
     <a class="nav-item nav-link" href="{% url 'employees:edit_profile' %}">Edit Profile</a>
 {% endblock %}
 
+{% block sidenav %}
+    <div class="col">
+        <ul class='nav flex-column align-items-start'>
+            <li>
+                <a class='nav-link active' href="{% url 'employees:display_specified_day' 'Sunday' %}">Sunday</a>
+            </li>
+            <li>
+                <a class='nav-link active' href="{% url 'employees:display_specified_day' 'Monday' %}">Monday</a>
+            </li>
+            <li>
+                <a class='nav-link active' href="{% url 'employees:display_specified_day' 'Tuesday' %}">Tuesday</a>
+            </li>
+            <li>
+                <a class='nav-link active' href="{% url 'employees:display_specified_day' 'Wednesday' %}">Wednesday</a>
+            </li>
+            <li>
+                <a class='nav-link active' href="{% url 'employees:display_specified_day' 'Thursday' %}">Thursday</a>
+            </li>
+            <li>
+                <a class='nav-link active' href="{% url 'employees:display_specified_day' 'Friday' %}">Friday</a>
+            </li>
+            <li>
+                <a class='nav-link active' href="{% url 'employees:display_specified_day' 'Saturday' %}">Saturday</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
 <!-- remember footer -->

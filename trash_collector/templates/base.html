@@ -7,7 +7,7 @@
 </head>
   <body>
   {% if user.is_authenticated %}
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light mx-3">
     <a class="navbar-brand" href="#">Trash Collector</a>
     <div class="navbar-nav">
     {% block navbar %}{% endblock %}
@@ -16,9 +16,11 @@
   </nav>
   {% endif %}
     <main>
-      <div class="container">
+      <div class="container-fluid mx-3 my-3">
         <div class="row">
-          <div class="col-2"></div>
+          <div class="col-2">
+            {% block sidenav %}{% endblock %}
+          </div>
           <div class="col-8" align="center">
             <br />
             <br />

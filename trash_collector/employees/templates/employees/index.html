@@ -1,28 +1,51 @@
 {% extends 'employees/employee_base.html' %}
 
-{% block title %}{% block header %} Employee Home {% endblock %}{% endblock %}
+{% block title %}{% block header %} <div class='row'>
+  <div class='col display-3'>
+    Employee - Home </div>  {% endblock %}{% endblock %}
+</div>
+  
 
 {% block content %}
+<div class = "mx-auto">
   {% if user.is_authenticated %}
-    <p> Hello Employee {{ user.username }}!
-    Today is {{today}}</p>
+    <div class='col'></div>
+    <div class='col display-6'>
+      Hello Employee {{ user.username }}! Today is {{today}}
+    </div>
     
+    <br>
+
+    <div class='row'>
+      <div class='col h5'>
+        Today's Pickup Schedule
+      </div>
+    </div>
     <ul>
       {% for customer in customer_list %}
-      <li><div>{{customer.name}}</div><div>
-        <button type="button" >
-          <a href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
-        </button>
-      </div></li>
+      <div class='col'>
+        {{customer.name}} | Address: {{customer.address}} {{customer.zip_code}}
+          <button type="button" class='btn btn-primary'>
+            <a class='text-white' href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
+          </button>
+        </div>
     </ul>
       {%endfor%}
+
+    <br>
+
+    <div class="row">
+      <div class = "col h5">
+        One Time Pickups For The Day
+      </div>
+    </div>  
     <ul>
       {% for customer in one_time_pickup_customers%}
-      <li><div>{{customer.name}}</div><div>
-        <button type="button" >
-          <a href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
+      <div class='col'>{{customer.name}} | Address: {{customer.address}} {{customer.zip_code}}
+        <button type="button" class='btn btn-primary'>
+          <a class='text-white' href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
         </button>
-      </div></li>
+      </div>
     </ul> 
       {%endfor%} 
   {% else %}
@@ -30,4 +53,5 @@
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>
   {% endif %}
+</div>
 {% endblock %}
