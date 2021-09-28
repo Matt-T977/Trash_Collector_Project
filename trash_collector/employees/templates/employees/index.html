@@ -4,7 +4,14 @@
 
 {% block content %}
   {% if user.is_authenticated %}
-    Hello Employee {{ user.username }}!
+    <p> Hello Employee {{ user.username }}!
+    Today is {{today}}</p>
+    
+    <ul>
+      {% for customer in customer_list %}
+      <li><div>{{customer.name}}</div></li>
+    </ul>
+      {%endfor%}
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>

@@ -13,18 +13,22 @@ from .models import Employee
 
 # TODO: Create a function for each path created in employees/urls.py. Each will need a template as well.
 
-
+@login_required
 def index(request):
     # This line will get the Customer model from the other app, it can now be used to query the db for Customers
     Customer = apps.get_model('customers.Customer')
+
     logged_in_user = request.user
 
     try:
         logged_in_employee = Employee.objects.get(user=logged_in_user)
-
         today = date.today()
+        customer_list = Customer.objects.all().filter(zip_code=logged_in_employee.zip_code).exclude(suspend_end__gt=today , suspend_start__lt=today)
+        
+        # customer_list = customer.objects.exclude()
 
         context = {
+            'customer_list' : customer_list,
             'logged_in_employee' : logged_in_employee,
             'today' : today
         }
@@ -32,7 +36,8 @@ def index(request):
 
     except ObjectDoesNotExist:
         return HttpResponseRedirect(reverse('employees:create'))
-   
+
+@login_required   
 def create(request):
     logged_in_user = request.user
     if request.method == "POST":
@@ -45,6 +50,7 @@ def create(request):
     else:
         return render(request, 'employees/create.html')
 
+@login_required
 def edit_profile(request):
     logged_in_user = request.user
     logged_in_employee = Employee.objects.get(user=logged_in_user)
@@ -62,3 +68,6 @@ def edit_profile(request):
             'logged_in_employee': logged_in_employee
         }
         return render(request, 'employees/edit_profile.html', context)
+
+'''General Python Functions Below'''
+
