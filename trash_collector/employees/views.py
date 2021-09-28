@@ -1,3 +1,4 @@
+from trash_collector.customers.views import one_time_pickup
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
@@ -5,7 +6,7 @@ from django.apps import apps
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
-from datetime import date
+from datetime import date, datetime
 
 from .models import Employee
 
@@ -23,7 +24,9 @@ def index(request):
     try:
         logged_in_employee = Employee.objects.get(user=logged_in_user)
         today = date.today()
-        customer_list = Customer.objects.all().filter(zip_code=logged_in_employee.zip_code).filter(weekly_pickup=today.isoweekday).exclude(suspend_end__gt=today , suspend_start__lt=today)
+        day_of_the_week = datetime.weekday(today)
+        day_of_the_week_string = day_of_the_week_to_string(day_of_the_week)
+        customer_list = Customer.objects.all().filter(zip_code=logged_in_employee.zip_code).filter(weekly_pickup=day_of_the_week_string).add(one_time_pickup=today).exclude(suspend_end__gt=today , suspend_start__lt=today)
         
         # customer_list = customer.objects.exclude()
 
@@ -71,3 +74,32 @@ def edit_profile(request):
 
 '''General Python Functions Below'''
 
+def day_of_the_week_to_string(day_of_the_week):
+    if day_of_the_week == 0:
+        return 'Monday'
+    elif day_of_the_week == 1:
+        return 'Tuesday'
+    elif day_of_the_week == 2:
+        return 'Wednesday'
+    elif day_of_the_week == 3:
+        return 'Thursday'
+    elif day_of_the_week == 4:
+        return 'Friday'
+    elif day_of_the_week == 5:
+        return 'Saturday'
+    else:
+        return 'Sunday'
+
+# def day_name(today):
+#     day_dictionary = {
+#         0 : 'Monday',
+#         1 : 'Tuesday',
+#         2 : 'Wednesday',
+#         3 : 'Thursday',
+#         4 : 'Friday',
+#         5 : 'Saturday',
+#         6 : 'Sunday'
+#     }
+#     for day in day_dictionary:
+#         if day == today:
+#             return day
