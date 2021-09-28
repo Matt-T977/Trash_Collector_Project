@@ -23,7 +23,7 @@ def index(request):
     try:
         logged_in_employee = Employee.objects.get(user=logged_in_user)
         today = date.today()
-        customer_list = Customer.objects.all().filter(zip_code=logged_in_employee.zip_code).exclude(suspend_end__gt=today , suspend_start__lt=today)
+        customer_list = Customer.objects.all().filter(zip_code=logged_in_employee.zip_code).filter(weekly_pickup=today.isoweekday).exclude(suspend_end__gt=today , suspend_start__lt=today)
         
         # customer_list = customer.objects.exclude()
 
