@@ -12,6 +12,11 @@
       <li><div>{{customer.name}}</div></li>
     </ul>
       {%endfor%}
+    <ul>
+      {% for customer in one_time_pickup_customers%}
+      <li><div>{{customer.name}}</div></li>
+    </ul> 
+      {%endfor%} 
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>

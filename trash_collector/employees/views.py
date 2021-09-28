@@ -1,4 +1,3 @@
-from trash_collector.customers.views import one_time_pickup
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
@@ -26,12 +25,13 @@ def index(request):
         today = date.today()
         day_of_the_week = datetime.weekday(today)
         day_of_the_week_string = day_of_the_week_to_string(day_of_the_week)
-        customer_list = Customer.objects.all().filter(zip_code=logged_in_employee.zip_code).filter(weekly_pickup=day_of_the_week_string).add(one_time_pickup=today).exclude(suspend_end__gt=today , suspend_start__lt=today)
-        
+        customer_list = Customer.objects.all().filter(zip_code=logged_in_employee.zip_code).filter(weekly_pickup=day_of_the_week_string).exclude(suspend_end__gt=today , suspend_start__lt=today)
+        one_time_pickup_customers = Customer.objects.all().filter(one_time_pickup=today)
         # customer_list = customer.objects.exclude()
 
         context = {
             'customer_list' : customer_list,
+            'one_time_pickup_customers' : one_time_pickup_customers,
             'logged_in_employee' : logged_in_employee,
             'today' : today
         }
