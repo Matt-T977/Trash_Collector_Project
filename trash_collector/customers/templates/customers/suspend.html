@@ -2,19 +2,29 @@
 
 {% block title %} Customer Suspension {% endblock %}
 
-{% block header %} Choose Suspension Dates {% endblock %}
+{% block header %} <div class="bg-success text-white">Choose Suspension Dates</div> {% endblock %}
 
 {% block content %}
 <br />
 <form action="{% url 'customers:suspend' %}" method="post">
     {% csrf_token %}
-    Start Date: <input type="date" name="start" id="start">
-    <br />
-    <br />
-    End Date: <input type="date" name="end" id="end">
-    <br />
-    <br />
-    <input type="submit" value="Submit">
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Start Date:</th>
+                <td> <input type="date" name="start" id="start"></td>
+            </tr>
+            <tr>
+                <th scope="row">End Date:</th>
+                <td> <input type="date" name="end" id="end"></td>
+            </tr>
+            <tr>
+                <th scope="row"><input class ="bg-success text-white" type="submit" value="Submit"></th>
+            </tr>
+        </tbody>
+    </table>
 </form>
 
 {% endblock %}

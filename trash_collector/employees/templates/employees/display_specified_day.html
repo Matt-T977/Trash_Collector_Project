@@ -1,16 +1,9 @@
 {% extends 'employees/employee_base.html' %}
 
-{% block title %}Employee Home - Trash Collector{% endblock %}
-<!-- <div class='container'>
-  <div class='row'>
-    <div class='col text-center h1'>
-    Employee - Home 
-    </div>
-  </div> -->
+{% block title %}{{current_day_display}} Pickup - Trash Collector{% endblock %}
   
 
 {% block content %}
-<div class='container'>
   <div class = "row">
     {% if user.is_authenticated %}
     <div class='col text-center h2 d-none d-lg-block'>
@@ -20,7 +13,7 @@
 
   <div class='row'>
     <div class='col h3 text-center mt-3'>
-      Today's Pickup Schedule
+      {{current_day_display}}'s Pickup Schedule
     </div>
   </div>
   <div class='row'>
@@ -51,7 +44,7 @@
       </table>    
     </div>
   </div>
-
+<!-- 
   <br>
 
   <div class='row'>
@@ -86,7 +79,7 @@
         </tbody>
       </table>    
     </div>
-  </div>
+  </div> -->
 
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>

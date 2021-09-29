@@ -69,7 +69,7 @@ def display_specified_day(request, current_day_display):
             'logged_in_employee' : logged_in_employee,
             'today' : today
         }
-        return render(request, 'employees/index.html', context)
+        return render(request, 'employees/display_specified_day.html', context)
 
     except ObjectDoesNotExist:
         return HttpResponseRedirect(reverse('employees:create'))

@@ -2,22 +2,33 @@
 
 {% block title %} Customer Profile Edit {% endblock %}
 
-{% block header %} Update Your Information {% endblock %}
+{% block header %} <div class="bg-success">Update Your Information</div> {% endblock %}
 
 {% block content %}
 <br />
 <form action="{% url 'customers:edit_profile' %}" method="post">
     {% csrf_token %}
-    Name: <input type="name" name="name" id="name">
-    <br />
-    <br />
-    Address: <input type="address" name="address" id="address">
-    <br />
-    <br />
-    Zip Code: <input type="zip_code" name="zip_code" id="zip_code">
-    <br />
-    <br />
-    <input type="submit" value="Submit">
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Name:</th>
+                <td><input type="name" name="name" id="name"></td>
+            </tr>
+            <tr>
+                <th scope="row">Address:</th>
+                <td><input type="address" name="address" id="address"></td>
+            </tr>
+            <tr>
+                <th scope="row">Zip Code:</th>
+                <td><input type="zip_code" name="zip_code" id="zip_code"></td>
+            </tr>
+            <tr>
+                <th scope="row"><input type="submit" value="Submit"></th>
+            </tr>
+        </tbody>
+    </table>
 </form>
 
 {% endblock %}

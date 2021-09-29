@@ -2,16 +2,24 @@
 
 {% block title %} One Time Pickup {% endblock %}
 
-{% block header %} Choose A One Time Pickup {% endblock %}
+{% block header %} <div class="bg-success text-white">Choose A One Time Pickup</div>{% endblock %}
 
 {% block content %}
 <br />
 <form action="{% url 'customers:one_time' %}" method="post">
     {% csrf_token %}
-    Date of Pick Up: <input type="date" name="date" id="date">
-    <br />
-    <br />
-    <input type="submit" value="Submit">
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Date of Pickup:</th>
+                <td> <input type="date" name="date" id="date"></td>
+            </tr>
+            <tr>
+                <th scope="row"><input class ="bg-success text-white" type="submit" value="Submit"></th>
+            </tr>
+        </tbody>
+    </table>
 </form>
-
 {% endblock %}
