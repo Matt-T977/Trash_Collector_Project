@@ -92,15 +92,19 @@ def confirm_pickup(request, customer_id):
 @login_required   
 def create(request):
     logged_in_user = request.user
-    if request.method == "POST":
-        name_from_form = request.POST.get('name')
-        zip_from_form = request.POST.get('zip_code')
-        phone_number_from_form = request.POST.get('phone_number')
-        new_employee = Employee(name=name_from_form, user=logged_in_user, zip_code=zip_from_form, phone_number=phone_number_from_form)
-        new_employee.save()
-        return HttpResponseRedirect(reverse('employees:index'))
-    else:
-        return render(request, 'employees/create.html')
+    try:
+        if request.method == "POST":
+            name_from_form = request.POST.get('name')
+            zip_from_form = request.POST.get('zip_code')
+            phone_number_from_form = request.POST.get('phone_number')
+            new_employee = Employee(name=name_from_form, user=logged_in_user, zip_code=zip_from_form, phone_number=phone_number_from_form)
+            new_employee.save()
+            return HttpResponseRedirect(reverse('employees:index'))
+        else:
+            return render(request, 'employees/create.html')
+            
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect(reverse('employees:create'))    
 
 @login_required
 def edit_profile(request):

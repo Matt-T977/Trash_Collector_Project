@@ -2,11 +2,11 @@
 
 {% block title %} Employee Create {% endblock %}
 
-{% block header %} Please Complete Registration {% endblock %}
+{% block header %} <div class="h2 text-center"> Please Complete Registration </div>{% endblock %}
 
 {% block content %}
 
-<form action="{% url 'employees:create' %}" method='post'>
+<form class="mt-5" action="{% url 'employees:create' %}" method='post'>
     {% csrf_token %}
     Name: <input class='form-control'  type='text' name='name' id='name'><br />
     Zip Code: <input class='form-control'  type='text' name='zip_code' id='zip_code'><br />
