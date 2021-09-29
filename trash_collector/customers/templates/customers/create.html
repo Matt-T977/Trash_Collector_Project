@@ -2,34 +2,33 @@
 
 {% block title %} Customer Create {% endblock %}
 
-{% block header %} <div class="bg-success">Please Complete Registration</div> {% endblock %}
-
 {% block content %}
 
+<div class="bg-success text-white p-3 h5">Please Complete Registration</div>
 <form action="{% url 'customers:create' %}" method="post">
     {% csrf_token %}
-    <table class="table">
+    <table class="table table-success table-borderless">
         <thead>
         </thead>
         <tbody>
-            <tr>
+            <tr class="table-success">
                 <th scope="row">Name: </th>
                 <td><input type="text" name="name" id="name"></td>
             </tr>
-            <tr>
+            <tr class="table-success">
                 <th scope="row">Address: </th>
                 <td><input type="text" name="address" id="address"></td>
             </tr>
-            <tr>
+            <tr class="table-success">
                 <th scope="row">Zip Code: </th>
                 <td><input type="text" name="zip_code" id="zip_code"></td>
             </tr>
-            <tr>
+            <tr class="table-success"">
                 <th scope="row">Choose your Weekly Pickup Day:  </th>
                 <td><input type="text" name="weekly_pickup" id="weekly_pickup"></td>
             </tr>
             <tr>
-                <th scope="row"><input type="submit" value="Register"></th>
+                <th scope="row"><input class = "bg-success text-white btn" type="submit" value="Register"></th>
             </tr>
         </tbody>
     </table>

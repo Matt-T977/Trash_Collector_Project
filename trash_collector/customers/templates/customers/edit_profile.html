@@ -2,30 +2,28 @@
 
 {% block title %} Customer Profile Edit {% endblock %}
 
-{% block header %} <div class="bg-success">Update Your Information</div> {% endblock %}
-
 {% block content %}
-<br />
+<div class="bg-success text-white p-3 h5">Update Your Information</div>
 <form action="{% url 'customers:edit_profile' %}" method="post">
     {% csrf_token %}
-    <table class="table">
+    <table class="table table-borderless">
         <thead>
         </thead>
         <tbody>
-            <tr>
+            <tr class="table-success">
                 <th scope="row">Name:</th>
-                <td><input type="name" name="name" id="name"></td>
+                <td><input class="form-control" type="name" name="name" id="name" value="{{logged_in_customer.name}}"></td>
             </tr>
-            <tr>
+            <tr class="table-success">
                 <th scope="row">Address:</th>
-                <td><input type="address" name="address" id="address"></td>
+                <td><input class="form-control"type="address" name="address" id="address" value="{{logged_in_customer.address}}"></td>
             </tr>
-            <tr>
+            <tr class="table-success">
                 <th scope="row">Zip Code:</th>
-                <td><input type="zip_code" name="zip_code" id="zip_code"></td>
+                <td><input class="form-control" type="zip_code" name="zip_code" id="zip_code" value="{{logged_in_customer.zip_code}}"></td>
             </tr>
             <tr>
-                <th scope="row"><input type="submit" value="Submit"></th>
+                <th scope="row"><input class ="bg-success text-white btn" type="submit" value="Submit"></th>
             </tr>
         </tbody>
     </table>

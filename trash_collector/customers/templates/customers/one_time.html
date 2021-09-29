@@ -3,8 +3,7 @@
 {% block title %} One Time Pickup {% endblock %}
 
 {% block content %}
-<div class="bg-success text-white px-3">Choose A One Time Pickup</div>
-<br />
+<div class="bg-success text-white p-3 h5">Choose A One Time Pickup</div>
 <form action="{% url 'customers:one_time' %}" method="post">
     {% csrf_token %}
     <table class="table table-borderless">
