@@ -1,57 +1,100 @@
 {% extends 'employees/employee_base.html' %}
 
-{% block title %}{% block header %} <div class='row'>
-  <div class='col display-3'>
-    Employee - Home </div>  {% endblock %}{% endblock %}
-</div>
+{% block title %}Employee Home - Trash Collector{% endblock %}
+{% block header %} 
+<div class='container'>
+  <div class='row'>
+    <div class='col text-center h1'>
+    Employee - Home 
+    </div>
+  </div>
+
+{% endblock %}
   
 
 {% block content %}
-<div class = "mx-auto">
-  {% if user.is_authenticated %}
+  <div class = "row">
+    {% if user.is_authenticated %}
+    <div class='col text-center h2'>
+    Hello {{ user.username }}! Today is {{today}}
+    </div>
+  
+
+  <div class='row'>
+    <div class='col h3 text-center mt-3'>
+      Today's Pickup Schedule
+    </div>
+  </div>
+  <div class='row'>
     <div class='col'></div>
-    <div class='col display-6'>
-      Hello Employee {{ user.username }}! Today is {{today}}
+      <table class='table table-success'>
+        <thead>
+          <tr>
+            <th scope='col'>Name</th>
+            <th scope='col'>Address</th>
+            <th scope='col'>Zip Code</th>
+            <th scope='col'>Confirm Pickup</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for customer in customer_list %}
+          <tr scope='row'>
+            <td>{{customer.name}}</td>
+            <td>{{customer.address}}</td>
+            <td>{{customer.zip_code}}</td>
+            <td>
+              <button type="button" class='btn bg-success'>
+              <a class='text-white' href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
+              </button>
+            </td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>    
     </div>
-    
-    <br>
+  </div>
 
-    <div class='row'>
-      <div class='col h5'>
-        Today's Pickup Schedule
-      </div>
+  <br>
+
+  <div class='row'>
+    <div class='col h3 text-center mt-3'>
+      One Time Pickup Schedule
     </div>
-    <ul>
-      {% for customer in customer_list %}
-      <div class='col'>
-        {{customer.name}} | Address: {{customer.address}} {{customer.zip_code}}
-          <button type="button" class='btn btn-primary'>
-            <a class='text-white' href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
-          </button>
-        </div>
-    </ul>
-      {%endfor%}
+  </div>
+  <div class='row'>
+    <div class='col'></div>
+      <table class='table table-success'>
+        <thead>
+          <tr>
+            <th scope='col'>Name</th>
+            <th scope='col'>Address</th>
+            <th scope='col'>Zip Code</th>
+            <th scope='col'>Confirm Pickup</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for customer in one_time_pickup_customers %}
+          <tr scope='row'>
+            <td>{{customer.name}}</td>
+            <td>{{customer.address}}</td>
+            <td>{{customer.zip_code}}</td>
+            <td>
+              <button type="button" class='btn bg-success'>
+              <a class='text-white' href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
+              </button>
+            </td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>    
+    </div>
+  </div>
 
-    <br>
-
-    <div class="row">
-      <div class = "col h5">
-        One Time Pickups For The Day
-      </div>
-    </div>  
-    <ul>
-      {% for customer in one_time_pickup_customers%}
-      <div class='col'>{{customer.name}} | Address: {{customer.address}} {{customer.zip_code}}
-        <button type="button" class='btn btn-primary'>
-          <a class='text-white' href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
-        </button>
-      </div>
-    </ul> 
-      {%endfor%} 
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>
   {% endif %}
 </div>
+
 {% endblock %}
