@@ -3,7 +3,7 @@
 {% block title %} One Time Pickup {% endblock %}
 
 {% block content %}
-<div class="bg-success text-white p-3 h5">Choose A One Time Pickup</div>
+<div class = "rounded bg-success text-white p-3 h3">Choose A One Time Pickup</div>
 <form action="{% url 'customers:one_time' %}" method="post">
     {% csrf_token %}
     <table class="table table-borderless">
@@ -11,13 +11,13 @@
         </thead>
         <tbody>
             <tr>
-                <th scope="row" class="table-success">Date of Pickup:</th>
-                <td class="table-success"> <input type="date" name="date" id="date"></td>
+                <th  style="width:30%" scope="row" class="table-success"><span class="px-2 fs-4">Date of Pickup:</span></th>
+                <td class="pe-5 table-success"> <input type="date" name="date" id="date"></td>
             </tr>
             <tr>
-                <th scope="row"><input class ="bg-success text-white btn" type="submit" value="Submit"></th>
+                <th scope="row" ><input class ="bg-success text-white btn" type="submit" value="Submit"></th>
             </tr>
-        </tbody>
+        </tbody
     </table>
-</form>
+    </form>
 {% endblock %}

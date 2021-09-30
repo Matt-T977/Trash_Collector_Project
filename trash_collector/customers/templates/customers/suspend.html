@@ -3,20 +3,20 @@
 {% block title %} Customer Suspension {% endblock %}
 
 {% block content %}
-<div class="bg-success text-white p-3 h5">Choose Suspension Dates</div>
+<div class = "rounded bg-success text-white p-3 h3">Choose Suspension Dates</div>
 <form action="{% url 'customers:suspend' %}" method="post">
     {% csrf_token %}
     <table class="table table-borderless">
         <thead>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row" class="table-success">Start Date:</th>
-                <td class="table-success"> <input type="date" name="start" id="start"></td>
+            <tr class="table-success">
+                <th style="width:20%" scope="row"><span class="px-2 fs-4">Start Date:</span></th>
+                <td class="pe-5"> <input type="date" name="start" id="start"></td>
             </tr>
-            <tr>
-                <th scope="row" class="table-success">End Date:</th>
-                <td class="table-success"> <input type="date" name="end" id="end"></td>
+            <tr class="table-success">
+                <th style="width:20%" scope="row px-2"><span class="px-2 fs-4">End Date:</span></th>
+                <td class="pe-5"> <input type="date" name="end" id="end"></td>
             </tr>
             <tr>
                 <th scope="row"><input class ="bg-success text-white btn" type="submit" value="Submit"></th>

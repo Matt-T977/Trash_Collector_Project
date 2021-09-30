@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from datetime import date, datetime
+import requests
 
 from .models import Employee
 

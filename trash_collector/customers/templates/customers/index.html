@@ -3,46 +3,49 @@
 {% block title %} Customer Home {% endblock %}
 {% if user.is_authenticated %}
 
-{% block content %}
-<div class="container bg-success text-white p-3 h5"> Welcome {{ logged_in_customer.name }} </div>
-<div class="container-fluid bg-light">
-    <h5 align="center">Today is {{today}}</h5>
-    <div class="row">
-        <div class="col-6">
-            <br />
-            <br />
-            <br />
-            <p align="center">Current balance this cycle: $ {{ logged_in_customer.balance }}.00 </p>
-            <p align="center"><button type="button" class="btn text-white bg-success"> Your Bill Here </button></p>
-        </div>
-        <div class="col-6">
-            <br />
-            <br />
-            <div class="fw-bold">Your Weekly Pickup Day:</div>
-            {{ logged_in_customer.weekly_pickup }}<br />
-            <div class="fw-bold">Address on File:</div>
-            {{ logged_in_customer.address }} {{logged_in_customer.zip_code }}<br />
-            {% if logged_in_customer.one_time_pickup %}
-            <div class="fw-bold">You have an extra pickup scheduled for: </div>
-            {{ logged_in_customer.one_time_pickup }}
-            {% else %}
-            <p class="fst-italic">You can schedule an extra pick-up with the links above.</p>
-            {% endif %}
-            <br />
-            {% if today > logged_in_customer.suspend_start and today < logged_in_customer.suspend_end %}
-            <div class="fw-bold">Your pickups are suspended until: </div> {{ logged_in_customer.suspend_end }}
-            {% else %}
-            <p class="fst-italic">You can suspend your services with the links above.</p>
-            {% endif %}
+  
+  {% block content %}
+  
+  <div class = "rounded bg-success text-white p-3 h2"> Welcome {{ logged_in_customer.name }} </div>
+    <div class = "rounded container-fluid bg-light">
+        <h5 align="center">Today is {{today}}</h5>
+        <div class = "row">
+            <div class = "col-6">
+                <br />
+                <br />
+                <br />
+                <p align="center" class="fs-5">Current balance this cycle: $ {{ logged_in_customer.balance }}.00 </p>
+                <p align="center" class="fs-5"><button type="button" class ="btn bg-success text-white"> Your Bill Here </button></p>
+            </div>
+                <div class = "col-6">
+                <br />
+                <br />
+                <div class = "fw-bold fs-5">Your Weekly Pickup Day:</div> 
+                    <p class="fs-6">{{ logged_in_customer.weekly_pickup }}</p>
+                <div class = "fw-bold fs-5">Address on File:</div> 
+                    <p class="fs-6">{{ logged_in_customer.address }} {{logged_in_customer.zip_code }}</p>
+                {% if logged_in_customer.one_time_pickup %}
+                <div class = "fw-bold fs-5">You have an extra pickup scheduled for: </div>
+                    <p class="fs-6">{{ logged_in_customer.one_time_pickup }}</p>
+                {% else %}
+                <p class="fst-italic fs-5" align="justify">You can schedule an extra pick-up with the links above.</p>
+                {% endif %}
+                {% if today > logged_in_customer.suspend_start and today < logged_in_customer.suspend_end %}
+                <div class = "fw-bold fs-5">Your pickups are suspended until: </div> 
+                <p class="fs-6">{{ logged_in_customer.suspend_end }}</p>
+                {% else %}
+                <p class="fst-italic fs-5" align="justify">You can suspend your services with the links above.</p>
+                {% endif %}
+                
+                </div>
         </div>
     </div>
-</div>
     {% endblock %}
 
   {% else %}
-<p>You are at the customer index, but you are not logged in.</p>
-<a href="{% url 'login' %}">Log In</a>
-<a href="{% url 'accounts:register' %}">Sign Up</a>
+    <p>You are at the customer index, but you are not logged in.</p>
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'accounts:register' %}">Sign Up</a>
   {% endif %}
 
 
