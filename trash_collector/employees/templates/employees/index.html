@@ -1,5 +1,4 @@
 {% extends 'employees/employee_base.html' %}
-
 {% block title %}Employee Home - Trash Collector{% endblock %}
 <!-- <div class='container'>
   <div class='row'>
@@ -10,22 +9,21 @@
   
 
 {% block content %}
-<div class='container'>
   <div class = "row">
     {% if user.is_authenticated %}
-    <div class='col text-center h2 d-none d-lg-block'>
+    <div class='col text-center h2 d-none d-lg-block text-color-button'>
     Hello {{ user.username }}! Today is {{today}}
     </div>
   
 
   <div class='row'>
-    <div class='col h3 text-center mt-3'>
+    <div class='col h3 text-center mt-3 text-color-button'>
       Today's Pickup Schedule
     </div>
   </div>
   <div class='row'>
     <div class='col'></div>
-      <table class='table table-success'>
+      <table class='table bg-color-secondary'>
         <thead>
           <tr>
             <th scope='col'>Name</th>
@@ -41,8 +39,8 @@
             <td>{{customer.address}}</td>
             <td>{{customer.zip_code}}</td>
             <td>
-              <button type="button" class='btn bg-success'>
-              <a class='text-white' href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
+              <button type="button" class='btn bg-color-button'>
+              <a class='text-color-primary' href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
               </button>
             </td>
           </tr>
@@ -55,13 +53,13 @@
   <br>
 
   <div class='row'>
-    <div class='col h3 text-center mt-3'>
+    <div class='col h3 text-center mt-3 text-color-button'>
       One Time Pickup Schedule
     </div>
   </div>
   <div class='row'>
-    <div class='col'></div>
-      <table class='table table-success'>
+    <div class='col'>
+      <table class='table bg-color-secondary'>
         <thead>
           <tr>
             <th scope='col'>Name</th>
@@ -78,15 +76,16 @@
             <td>{{customer.zip_code}}</td>
             <td>
               <button type="button" class='btn bg-success'>
-              <a class='text-white' href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
+              <a class='text-color-primary' href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
               </button>
             </td>
           </tr>
           {%endfor%}
         </tbody>
-      </table>    
-    </div>
+      </table>
+    </div>   
   </div>
+
 
   {% else %}
     <p>You are at the employee index, but you are not logged in.</p>

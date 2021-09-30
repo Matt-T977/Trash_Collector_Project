@@ -1,0 +1,34 @@
+.bg-color-primary {
+    background-color: #F8EDE3;
+}
+.bg-color-secondary {
+    background-color: #BDD2B6;
+
+}.bg-color-nav {
+    background-color: #A2B29F;
+
+}.bg-color-button {
+    background-color: #798777;
+}
+
+.text-color-primary {
+    color: #F8EDE3;
+}
+.text-color-secondary {
+    color: #BDD2B6;
+
+}
+.text-color-nav {
+    color: #A2B29F;
+
+}
+.text-color-button {
+    color: #798777;
+}
+
+.primary-font-family {
+    font-family: Garamond, serif;
+}
+.bg-success {
+    background-color: #798777;
+}

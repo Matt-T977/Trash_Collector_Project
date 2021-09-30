@@ -6,16 +6,16 @@
   
   {% block content %}
   
-  <div class = "rounded bg-success text-white p-3 h2"> Welcome {{ logged_in_customer.name }} </div>
-    <div class = "rounded container-fluid bg-light">
-        <h5 align="center">Today is {{today}}</h5>
+  <div class = "rounded bg-color-button text-color-primary p-3 h2"> Welcome {{ logged_in_customer.name }} </div>
+    <div class = "rounded container-fluid bg-color-secondary">
+        <h5 class='pt-2' align="center">Today is {{today}}</h5>
         <div class = "row">
             <div class = "col-6">
                 <br />
                 <br />
                 <br />
                 <p align="center" class="fs-5">Current balance this cycle: $ {{ logged_in_customer.balance }}.00 </p>
-                <p align="center" class="fs-5"><button type="button" class ="btn bg-success text-white"> Your Bill Here </button></p>
+                <p align="center" class="fs-5"><button type="button" class ="btn bg-color-button text-color-primary"> Your Bill Here </button></p>
             </div>
                 <div class = "col-6">
                 <br />

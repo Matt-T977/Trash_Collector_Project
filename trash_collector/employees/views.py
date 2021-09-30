@@ -157,3 +157,5 @@ def day_of_the_week_to_string(day_of_the_week):
 #     for day in day_dictionary:
 #         if day == today:
 #             return day
+
+'''requests'''

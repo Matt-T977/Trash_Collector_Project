@@ -6,19 +6,19 @@
 {% block content %}
   <div class = "row">
     {% if user.is_authenticated %}
-    <div class='col text-center h2 d-none d-lg-block'>
+    <div class='col text-center h2 d-none d-lg-block text-color-button'>
     Hello {{ user.username }}! Today is {{today}}
     </div>
   
 
   <div class='row'>
-    <div class='col h3 text-center mt-3'>
+    <div class='col h3 text-center mt-3 text-color-button'>
       {{current_day_display}}'s Pickup Schedule
     </div>
   </div>
   <div class='row'>
     <div class='col'></div>
-      <table class='table table-success'>
+      <table class='table bg-color-secondary'>
         <thead>
           <tr>
             <th scope='col'>Name</th>
@@ -34,7 +34,7 @@
             <td>{{customer.address}}</td>
             <td>{{customer.zip_code}}</td>
             <td>
-              <button type="button" class='btn bg-success'>
+              <button type="button" class='btn bg-color-button'>
               <a class='text-white' href="{% url 'employees:confirm_pickup' customer.id %}">Confirm Pickup</a>
               </button>
             </td>
