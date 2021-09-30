@@ -14,6 +14,7 @@
     <div class='col text-center h2 d-none d-lg-block text-color-button'>
     Hello {{ user.username }}! Today is {{today}}
     </div>
+  </div>
   
 
   <div class='row'>
@@ -48,7 +49,6 @@
         </tbody>
       </table>    
     </div>
-  </div>
 
   <br>
 
@@ -92,6 +92,5 @@
     <a href="{% url 'login' %}">Log In</a>
     <a href="{% url 'accounts:register' %}">Sign Up</a>
   {% endif %}
-</div>
 
 {% endblock %}
