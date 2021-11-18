@@ -2,6 +2,8 @@
 
 ## Developer : Matthew Taylor & Sierra Paschall
 
+#### Stack: MySQL - Python | Django - HTML | CSS
+
 The Trash Collector project is an application built to assist employees provide customers
 with a high level of quality service each week. This has been accomplshed by utilizing Django
 as a full stack technology for this application with its MVT model. Using Django we were able
