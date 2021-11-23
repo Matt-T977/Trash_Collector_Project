@@ -1,4 +1,4 @@
-# Trash Collector Project : Employee | Customer Inferface App
+# Trash Collector Project : Employee | Customer Interface App
 
 ## Developer : Matthew Taylor & Sierra Paschall
 
