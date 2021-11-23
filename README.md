@@ -4,12 +4,10 @@
 
 #### Stack: MySQL - Python | Django - HTML | CSS
 
-The Trash Collector project is an application built to assist employees provide customers
-with a high level of quality service each week. This has been accomplshed by utilizing Django
-as a full stack technology for this application with its MVT model. Using Django we were able
-to build a seamless transition from customer to employee to handle the necessary funcitonality 
-of both sides of the application. We also employed MySQL to handle the database and queries needed,
-as well as Bootstrap and CSS for layout and styling.
+The Trash Collector project is an application built to assist employees provide customers with a high level of quality service each week. 
+This has been accomplished by utilizing Django as a full stack technology for this application with its MVT model. Using Django we were able 
+to build a seamless transition from customer to employee to handle the necessary functionality of both sides of the application. We also 
+employed MySQL to handle the database and queries needed, as well as Bootstrap and CSS for layout and styling.
 
 ## Employee Home Page
 ![Employee_Home_Page](https://user-images.githubusercontent.com/89653410/142469866-a72049f0-9490-4a74-a360-563757c3f735.png)
